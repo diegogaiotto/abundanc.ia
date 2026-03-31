@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comunidade I.A-BUNDÂNCIA | Primeira Venda com IA em 22h</title>
+  <meta name="description" content="Comunidade exclusiva para quem já vende fotos com IA e quer escalar. 3 meses de acompanhamento intensivo com Diego. ROI já no primeiro mês." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:        #C9A84C;
+      --gold-light:  #E8C96A;
+      --gold-dim:    #8A6A1F;
+      --gold-glow:   rgba(201,168,76,0.18);
+      --black:       #0A0A0A;
+      --black-soft:  #111111;
+      --black-card:  #141414;
+      --black-border:#1E1E1E;
+      --white:       #FFFFFF;
+      --gray:        #A0A0A0;
+      --gray-dim:    #5A5A5A;
+      --radius:      12px;
+      --transition:  0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── Typography helpers ────────────────────────────────── */
+    .gold        { color: var(--gold); }
+    .gold-light  { color: var(--gold-light); }
+    .strike      { text-decoration: line-through; color: var(--gray-dim); }
+
+    /* ─── Scroll-reveal animation ───────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ─── Container ─────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─── Section spacing ───────────────────────────────────── */
+    section { padding: 96px 0; }
+
+    /* ─── Gold divider ──────────────────────────────────────── */
+    .divider {
+      width: 64px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 99px;
+      margin: 16px auto 0;
+    }
+    .divider-left { margin-left: 0; }
+
+    /* ─── Section label ─────────────────────────────────────── */
+    .section-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-glow);
+      border: 1px solid var(--gold-dim);
+      padding: 6px 14px;
+      border-radius: 99px;
+      margin-bottom: 20px;
+    }
+
+    /* ─── Buttons ────────────────────────────────────────────── */
+    .btn-gold {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: #000;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 18px 40px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      letter-spacing: 0.02em;
+      box-shadow: 0 4px 32px rgba(201,168,76,0.35);
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 48px rgba(201,168,76,0.5);
+      background: linear-gradient(135deg, var(--gold-light), #f0d880);
+    }
+    .btn-gold:active { transform: translateY(0); }
+
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 16px 38px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1.5px solid var(--gold);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-outline:hover {
+      background: var(--gold-glow);
+      transform: translateY(-2px);
+    }
+
+    /* ─── Badge ─────────────────────────────────────────────── */
+    .badge-vagas {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1a0a0a;
+      border: 1px solid #8B1A1A;
+      color: #FF6B6B;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 99px;
+    }
+    .badge-vagas::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #FF4444;
+      border-radius: 50%;
+      animation: pulse-red 1.4s infinite;
+    }
+    @keyframes pulse-red {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       NAVBAR
+    ═══════════════════════════════════════════════════════════ */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      padding: 16px 0;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--black-border);
+      transition: var(--transition);
+    }
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .navbar-logo {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .navbar-logo span { color: var(--white); }
+    .navbar-cta { font-size: 0.85rem; padding: 12px 24px; }
+
+    /* ═══════════════════════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════════════════════ */
+    #hero {
+      padding-top: 160px;
+      padding-bottom: 96px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badges {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .hero-headline {
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      max-width: 860px;
+      margin: 0 auto 24px;
+    }
+    .hero-headline em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--gray);
+      max-width: 620px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .hero-sub strong { color: var(--white); }
+    .hero-cta-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .hero-note {
+      font-size: 0.82rem;
+      color: var(--gray-dim);
+    }
+    .hero-social-proof {
+      margin-top: 64px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .proof-item {
+      text-align: center;
+    }
+    .proof-number {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .proof-label {
+      font-size: 0.78rem;
+      color: var(--gray);
+      margin-top: 4px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .proof-sep {
+      width: 1px;
+      background: var(--black-border);
+      align-self: stretch;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       COUNTDOWN
+    ═══════════════════════════════════════════════════════════ */
+    #countdown {
+      background: var(--black-soft);
+      border-top: 1px solid var(--black-border);
+      border-bottom: 1px solid var(--black-border);
+      padding: 72px 0;
+    }
+    .countdown-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .countdown-title {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 900;
+      line-height: 1.2;
+    }
+    .countdown-sub {
+      color: var(--gray);
+      margin-top: 12px;
+      font-size: 1rem;
+    }
+    .countdown-timer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .timer-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--black-card);
+      border: 1px solid var(--black-border);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      min-width: 110px;
+      position: relative;
+      overflow: hidden;
+    }
+    .timer-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    }
+    .timer-num {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 900;
+      color: var(--gold-light);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum";
+    }
+    .timer-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--gray-dim);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+    .timer-sep {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--gold-dim);
+      line-height: 1;
+      padding-bottom: 24px;
+    }
+    .countdown-footer {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .countdown-footer p {
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    .countdown-footer strong { color: var(--gold); }
+
+    /* ═══════════════════════════════════════════════════════════
+       ENTREGÁVEIS / VALOR
+    ═══════════════════════════════════════════════════════════ */
+    #valor {
+      background: var(--black);
+    }
+    .valor-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .valor-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 900;
+      line-height: 1.2;
+    }
+    .valor-sub {
+      color: var(--gray);
+      margin-top: 12px;
+      font-size: 1rem;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .valor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .valor-card {
+      background: var(--black-card);
+      border: 1px solid var(--black-border);
+      border-radius: var(--radius);
+      padding: 28px 28px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .valor-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(201,168,76,0.12);
+    }
+    .valor-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .valor-card:hover::after { opacity: 1; }
+    .valor-card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+    }
+    .valor-card-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+    .valor-card-price {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--gold);
+    }
+    .valor-card-price span {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--gray-dim);
+    }
+    .valor-total-box {
+      margin-top: 48px;
+      background: var(--black-card);
+      border: 1px solid var(--gold-dim);
+      border-radius: var(--radius);
+      padding: 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .valor-total-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    }
+    .valor-total-label {
+      font-size: 0.85rem;
+      color: var(--gray);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .valor-total-value {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+    .valor-total-value s {
+      opacity: 0.4;
+    }
+    .valor-total-desc {
+      font-size: 1rem;
+      color: var(--gray);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .valor-total-desc strong { color: var(--white); }
+
+    /* ═══════════════════════════════════════════════════════════
+       DIFERENCIAIS
+    ═══════════════════════════════════════════════════════════ */
+    #diferenciais {
+      background: var(--black-soft);
+      border-top: 1px solid var(--black-border);
+      border-bottom: 1px solid var(--black-border);
+    }
+    .dif-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .dif-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 900;
+      line-height: 1.2;
+    }
+    .dif-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+    .dif-card {
+      text-align: center;
+      padding: 48px 32px;
+      background: var(--black-card);
+      border: 1px solid var(--black-border);
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .dif-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(201,168,76,0.1);
+    }
+    .dif-card-num {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--black-border);
+      line-height: 1;
+      margin-bottom: 16px;
+      -webkit-text-stroke: 1px var(--gold-dim);
+    }
+    .dif-card-icon {
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+    }
+    .dif-card-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .dif-card-text {
+      font-size: 0.92rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+    .dif-card-text strong { color: var(--gold-light); }
+
+    /* ═══════════════════════════════════════════════════════════
+       LISTA DE ESPERA
+    ═══════════════════════════════════════════════════════════ */
+    #lista {
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    #lista::before {
+      content: '';
+      position: absolute;
+      bottom: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .lista-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .lista-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .lista-sub {
+      color: var(--gray);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .lista-sub strong { color: var(--gold); }
+    .form-card {
+      background: var(--black-card);
+      border: 1px solid var(--black-border);
+      border-radius: var(--radius);
+      padding: 40px;
+    }
+    .form-field {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gray);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .form-input {
+      width: 100%;
+      background: var(--black-soft);
+      border: 1px solid var(--black-border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      color: var(--white);
+      font-family: inherit;
+      transition: var(--transition);
+      outline: none;
+    }
+    .form-input::placeholder { color: var(--gray-dim); }
+    .form-input:focus {
+      border-color: var(--gold-dim);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+    }
+    .form-submit {
+      width: 100%;
+      font-size: 1rem;
+      padding: 18px;
+      margin-top: 8px;
+    }
+    .form-privacy {
+      font-size: 0.76rem;
+      color: var(--gray-dim);
+      text-align: center;
+      margin-top: 16px;
+    }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 24px;
+    }
+    .form-success-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+    .form-success-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+    .form-success-text {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .form-success-text strong { color: var(--white); }
+
+    /* ═══════════════════════════════════════════════════════════
+       FAQ
+    ═══════════════════════════════════════════════════════════ */
+    #faq {
+      background: var(--black-soft);
+      border-top: 1px solid var(--black-border);
+    }
+    .faq-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .faq-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-weight: 900;
+    }
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .faq-item {
+      background: var(--black-card);
+      border: 1px solid var(--black-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .faq-item.open { border-color: var(--gold-dim); }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 28px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      gap: 16px;
+    }
+    .faq-question:hover { color: var(--gold-light); }
+    .faq-arrow {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--black-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    .faq-item.open .faq-arrow { transform: rotate(45deg); border-color: var(--gold-dim); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), padding 0.45s ease;
+      padding: 0 28px;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 400px;
+      padding: 0 28px 24px;
+    }
+    .faq-answer p {
+      font-size: 0.95rem;
+      color: var(--gray);
+      line-height: 1.8;
+    }
+    .faq-answer strong { color: var(--white); }
+
+    /* ═══════════════════════════════════════════════════════════
+       CTA FINAL
+    ═══════════════════════════════════════════════════════════ */
+    #cta-final {
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    #cta-final::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 900px; height: 500px;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-final-inner {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-final-title {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .cta-final-sub {
+      font-size: 1.05rem;
+      color: var(--gray);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .cta-final-sub strong { color: var(--white); }
+    .cta-final-badges {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    .cta-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+    .cta-trust-icon { font-size: 1rem; }
+
+    /* ═══════════════════════════════════════════════════════════
+       RODAPÉ
+    ═══════════════════════════════════════════════════════════ */
+    footer {
+      background: #070707;
+      border-top: 1px solid var(--black-border);
+      padding: 40px 0;
+      text-align: center;
+    }
+    .footer-logo {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .footer-logo span { color: var(--white); }
+    .footer-tagline {
+      font-size: 0.82rem;
+      color: var(--gray-dim);
+      margin-bottom: 20px;
+    }
+    .footer-sep {
+      width: 40px;
+      height: 1px;
+      background: var(--black-border);
+      margin: 0 auto 20px;
+    }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--gray-dim);
+    }
+
+    /* ─── Mobile overrides ─────────────────────────────────── */
+    @media (max-width: 640px) {
+      section { padding: 64px 0; }
+      .hero-social-proof { gap: 20px; }
+      .proof-sep { display: none; }
+      .timer-block { min-width: 72px; padding: 20px 16px; }
+      .timer-num { font-size: 2rem; }
+      .form-card { padding: 28px 20px; }
+      .dif-card { padding: 36px 24px; }
+      .faq-question { padding: 20px 20px; }
+      .faq-item.open .faq-answer { padding: 0 20px 20px; }
+      .valor-total-box { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════════════════ -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="#" class="navbar-logo">I.A-BUNDÂNCIA<span> | Comunidade</span></a>
+        <a href="#lista" class="btn-gold navbar-cta">Quero ser avisado</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="container">
+
+      <div class="hero-badges reveal">
+        <span class="badge-vagas">Vagas Limitadas</span>
+        <span class="section-label">Abertura dia 05 de Abril</span>
+      </div>
+
+      <h1 class="hero-headline reveal">
+        Você já vende fotos com IA.<br />
+        Agora é hora de <em>escalar de verdade.</em>
+      </h1>
+
+      <p class="hero-sub reveal">
+        A Comunidade I.A-BUNDÂNCIA é um acompanhamento intensivo de
+        <strong>3 meses ao lado do Diego</strong> — com lives semanais, grupo exclusivo
+        e acesso direto para dúvidas técnicas. Objetivo claro:
+        <strong>ROI já no primeiro mês.</strong>
+      </p>
+
+      <div class="hero-cta-group reveal">
+        <a href="#lista" class="btn-gold">Quero ser avisado no dia 5 →</a>
+        <span class="hero-note">Preço especial de lançamento revelado apenas para a lista de espera</span>
+      </div>
+
+      <div class="hero-social-proof reveal">
+        <div class="proof-item">
+          <div class="proof-number">3</div>
+          <div class="proof-label">Meses intensivos</div>
+        </div>
+        <div class="proof-sep"></div>
+        <div class="proof-item">
+          <div class="proof-number">7+</div>
+          <div class="proof-label">Anos de mercado digital</div>
+        </div>
+        <div class="proof-sep"></div>
+        <div class="proof-item">
+          <div class="proof-number">10</div>
+          <div class="proof-label">Entregas exclusivas</div>
+        </div>
+        <div class="proof-sep"></div>
+        <div class="proof-item">
+          <div class="proof-number">R$5.750</div>
+          <div class="proof-label">Em valor empacotado</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       COUNTDOWN
+  ═══════════════════════════════════════════════════════ -->
+  <section id="countdown">
+    <div class="container">
+
+      <div class="countdown-header reveal">
+        <span class="section-label">Relógio correndo</span>
+        <h2 class="countdown-title">
+          Abertura exclusiva em <span class="gold">5 de Abril</span><br />
+          com preço especial de lançamento
+        </h2>
+        <p class="countdown-sub">Quem estiver na lista de espera terá acesso antes de todo mundo.</p>
+      </div>
+
+      <div class="countdown-timer reveal">
+        <div class="timer-block">
+          <div class="timer-num" id="cd-days">00</div>
+          <div class="timer-label">Dias</div>
+        </div>
+        <div class="timer-sep">:</div>
+        <div class="timer-block">
+          <div class="timer-num" id="cd-hours">00</div>
+          <div class="timer-label">Horas</div>
+        </div>
+        <div class="timer-sep">:</div>
+        <div class="timer-block">
+          <div class="timer-num" id="cd-minutes">00</div>
+          <div class="timer-label">Min</div>
+        </div>
+        <div class="timer-sep">:</div>
+        <div class="timer-block">
+          <div class="timer-num" id="cd-seconds">00</div>
+          <div class="timer-label">Seg</div>
+        </div>
+      </div>
+
+      <div class="countdown-footer reveal">
+        <p>Não perca o preço de lançamento. <strong>Entre na lista agora</strong> e seja o primeiro a saber.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       VALOR / ENTREGÁVEIS
+  ═══════════════════════════════════════════════════════ -->
+  <section id="valor">
+    <div class="container">
+
+      <div class="valor-header reveal">
+        <span class="section-label">O que você vai dominar</span>
+        <h2 class="valor-title">
+          Tudo o que está dentro da<br /><span class="gold">I.A-BUNDÂNCIA</span>
+        </h2>
+        <p class="valor-sub">Cada entrega foi construída para uma coisa: resultado real e rápido no seu negócio de fotos com IA.</p>
+        <div class="divider"></div>
+      </div>
+
+      <div class="valor-grid">
+
+        <div class="valor-card reveal" style="transition-delay:0.05s">
+          <div class="valor-card-icon">📡</div>
+          <div class="valor-card-name">Lives Semanais ao Vivo</div>
+          <div class="valor-card-price">R$ 800 <span>/ valor individual</span></div>
+        </div>
+
+        <div class="valor-card reveal" style="transition-delay:0.1s">
+          <div class="valor-card-icon">🏆</div>
+          <div class="valor-card-name">Grupo Exclusivo e Seleto</div>
+          <div class="valor-card-price">R$ 500 <span>/ valor individual</span></div>
+        </div>
+
+        <div class="valor-card reveal" style="transition-delay:0.15s">
+          <div class="valor-card-icon">🎯</div>
+          <div class="valor-card-name">Acesso Prioritário para Dúvidas Técnicas Direto com o Diego</div>
+          <div class="valor-card-price">R$ 1.200 <span>/ valor individual</span></div>
+        </div>
+
+        <div class="valor-card reveal" style="transition-delay:0.2s">
+          <div class="valor-card-icon">⚙️</div>
+          <div class="valor-card-name">Construção de APP com IA</div>
+          <div class="valor-card-price">R$ 600 <span>/ valor individual</span></div>
+        </div>
+
+        <div class="valor-card reveal" style="transition-delay:0.25s">
+          <div class="valor-card-icon">🔁</div>
+          <div class="valor-card-name">Geração de Imagem em Massa via API Sem Recarregar Créditos</div>
+          <div class="valor-card-price">R$ 700 <span>/ valor individual</span></div>
+        </div>
+
+        <div class="valor-card reveal" style="transition-delay:0.3s">
+          <div class="valor-card-icon">📊</div>
+          <div class="valor-card-name">Metodologia de Análise e Construção de Oferta</div>
+          <div class="valor-card-price">R$ 500 <span>/ valor individual</span></div>
+        </div>
+
+        <div class="valor-card reveal" style="transition-delay:0.35s">
+          <div class="valor-card-icon">🧪</div>
+          <div class="valor-card-name">Metodologia de Teste 1-10-10 ABO</div>
+          <div class="valor-card-price">R$ 450 <span>/ valor individual</span></div>
+        </div>
+
+        <div class="valor-card reveal" style="transition-delay:0.4s">
+          <div class="valor-card-icon">🧠</div>
+          <div class="valor-card-name">Mentalidade Blindada</div>
+          <div class="valor-card-price">R$ 300 <span>/ valor individual</span></div>
+        </div>
+
+        <div class="valor-card reveal" style="transition-delay:0.45s">
+          <div class="valor-card-icon">✅</div>
+          <div class="valor-card-name">Protocolo de Checklist para Produtividade</div>
+          <div class="valor-card-price">R$ 200 <span>/ valor individual</span></div>
+        </div>
+
+        <div class="valor-card reveal" style="transition-delay:0.5s">
+          <div class="valor-card-icon">🔓</div>
+          <div class="valor-card-name">Acesso a Informações Privilegiadas de Quem Tem 7 Anos de Mercado Digital</div>
+          <div class="valor-card-price">R$ 500 <span>/ valor individual</span></div>
+        </div>
+
+      </div>
+
+      <div class="valor-total-box reveal">
+        <div class="valor-total-label">Soma de todo o conteúdo</div>
+        <div class="valor-total-value"><s>R$ 5.750,00</s></div>
+        <p class="valor-total-desc">
+          Esse é o valor real de tudo que está dentro da comunidade.<br />
+          Mas o <strong>preço de lançamento</strong> vai ser revelado exclusivamente
+          para quem estiver <strong>na lista de espera no dia 5.</strong>
+          <br /><br />
+          <a href="#lista" class="btn-gold" style="font-size:0.95rem;padding:14px 32px;">
+            Quero entrar na lista →
+          </a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       DIFERENCIAIS
+  ═══════════════════════════════════════════════════════ -->
+  <section id="diferenciais">
+    <div class="container">
+
+      <div class="dif-header reveal">
+        <span class="section-label">Por que é diferente</span>
+        <h2 class="dif-title">
+          A I.A-BUNDÂNCIA não é mais um curso.<br />
+          <span class="gold">É acompanhamento real.</span>
+        </h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="dif-grid">
+
+        <div class="dif-card reveal-left">
+          <div class="dif-card-num">01</div>
+          <div class="dif-card-icon">📆</div>
+          <div class="dif-card-title">3 Meses de Acompanhamento Intensivo</div>
+          <p class="dif-card-text">
+            Não é um curso e some. São <strong>3 meses ao seu lado</strong> com lives semanais,
+            grupo ativo e suporte contínuo para você escalar sem travar.
+          </p>
+        </div>
+
+        <div class="dif-card reveal">
+          <div class="dif-card-num">02</div>
+          <div class="dif-card-icon">🎙️</div>
+          <div class="dif-card-title">Acesso Direto ao Diego</div>
+          <p class="dif-card-text">
+            Dúvida técnica? Você fala <strong>direto com o Diego</strong> — não com suporte terceirizado.
+            Quem tem 7 anos de mercado digital responde com você.
+          </p>
+        </div>
+
+        <div class="dif-card reveal-right">
+          <div class="dif-card-num">03</div>
+          <div class="dif-card-icon">💰</div>
+          <div class="dif-card-title">Foco em Resultado Prático no Primeiro Mês</div>
+          <p class="dif-card-text">
+            O objetivo é claro: <strong>ROI já no primeiro mês.</strong> Metodologias testadas,
+            checklists de produtividade e estratégia de tráfego aplicada ao seu negócio.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       LISTA DE ESPERA
+  ═══════════════════════════════════════════════════════ -->
+  <section id="lista">
+    <div class="container">
+
+      <div class="lista-inner">
+
+        <div class="reveal">
+          <span class="section-label">Lista de espera</span>
+          <h2 class="lista-title">
+            Garanta sua vaga na lista<br />
+            e seja <span class="gold">o primeiro a saber</span>
+          </h2>
+          <p class="lista-sub">
+            No dia 5, quem estiver na lista recebe o preço de lançamento
+            <strong>antes de todo mundo</strong> — com condições que não vão se repetir.
+            Preencha abaixo e garanta sua posição.
+          </p>
+        </div>
+
+        <div class="form-card reveal">
+
+          <div id="form-wrap">
+            <form id="waitlist-form" novalidate>
+
+              <div class="form-field">
+                <label class="form-label" for="field-name">Seu nome</label>
+                <input
+                  class="form-input"
+                  type="text"
+                  id="field-name"
+                  name="name"
+                  placeholder="Como você se chama?"
+                  autocomplete="given-name"
+                  required
+                />
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="field-whatsapp">WhatsApp</label>
+                <input
+                  class="form-input"
+                  type="tel"
+                  id="field-whatsapp"
+                  name="whatsapp"
+                  placeholder="(11) 99999-9999"
+                  autocomplete="tel"
+                  required
+                />
+              </div>
+
+              <button type="submit" class="btn-gold form-submit">
+                Garantir minha vaga na lista de espera →
+              </button>
+
+              <p class="form-privacy">🔒 Seus dados estão seguros. Sem spam.</p>
+            </form>
+          </div>
+
+          <div class="form-success" id="form-success">
+            <div class="form-success-icon">🎉</div>
+            <div class="form-success-title">Você está na lista!</div>
+            <p class="form-success-text">
+              Te avisaremos no dia 5 com <strong>condições exclusivas</strong> de lançamento.
+              Fique de olho no WhatsApp — você será um dos primeiros a saber.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FAQ
+  ═══════════════════════════════════════════════════════ -->
+  <section id="faq">
+    <div class="container">
+
+      <div class="faq-header reveal">
+        <span class="section-label">Dúvidas frequentes</span>
+        <h2 class="faq-title">Perguntas frequentes</h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq-item reveal">
+          <div class="faq-question" role="button" tabindex="0">
+            O que é a Comunidade I.A-BUNDÂNCIA?
+            <span class="faq-arrow">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>É uma comunidade exclusiva e seleta para pessoas que <strong>já vendem fotos com IA</strong> e querem escalar o negócio de forma estruturada. Ao longo de 3 meses, você recebe lives semanais, acesso a um grupo exclusivo e suporte técnico direto com o Diego — tudo focado em aumentar seu resultado na prática.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question" role="button" tabindex="0">
+            Para quem é essa comunidade?
+            <span class="faq-arrow">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Para quem <strong>já vende fotos com IA</strong> e quer dar o próximo passo: automação, escala de tráfego, construção de oferta e geração de imagem em massa. Se você ainda está começando do zero, a comunidade não é pra você — mas o curso <em>Primeira Venda com IA em 22h</em> pode ser um bom ponto de partida.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question" role="button" tabindex="0">
+            Quanto tempo dura o acompanhamento?
+            <span class="faq-arrow">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>O acompanhamento intensivo dura <strong>3 meses completos</strong>, com lives semanais ao vivo, grupo ativo e acesso prioritário a dúvidas. A ideia é que você já sinta o ROI no primeiro mês — e use os outros dois para consolidar e escalar.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question" role="button" tabindex="0">
+            Terei acesso direto ao Diego?
+            <span class="faq-arrow">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Sim. Uma das principais propostas da comunidade é justamente o <strong>acesso prioritário para dúvidas técnicas direto com o Diego</strong> — não com um time de suporte genérico. Você fala com quem tem 7 anos de mercado digital e conhece o negócio de fotos com IA na prática.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <div class="faq-question" role="button" tabindex="0">
+            O que acontece depois que me cadastro na lista?
+            <span class="faq-arrow">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Você entra na lista de espera e, <strong>no dia 5 de Abril</strong>, receberá uma mensagem no WhatsApp com o preço especial de lançamento — antes de todo mundo. Esse preço não será divulgado publicamente até a abertura oficial. Quem estiver na lista tem a vantagem de garantir a vaga em primeiro lugar.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       CTA FINAL
+  ═══════════════════════════════════════════════════════ -->
+  <section id="cta-final">
+    <div class="container">
+      <div class="cta-final-inner">
+
+        <div class="reveal">
+          <span class="badge-vagas" style="margin-bottom:24px;display:inline-flex;">Vagas Limitadas</span>
+        </div>
+
+        <h2 class="cta-final-title reveal">
+          Não perca o preço de lançamento.<br />
+          <span class="gold">A abertura é dia 5 de Abril.</span>
+        </h2>
+
+        <p class="cta-final-sub reveal">
+          O preço especial será revelado <strong>somente para quem estiver na lista de espera.</strong>
+          Vagas limitadas — a comunidade é exclusiva e seleta por design.
+        </p>
+
+        <div class="reveal">
+          <a href="#lista" class="btn-gold" style="font-size:1.05rem;padding:20px 48px;">
+            Quero ser avisado no dia 5 →
+          </a>
+        </div>
+
+        <div class="cta-final-badges reveal">
+          <div class="cta-trust-item">
+            <span class="cta-trust-icon">🔒</span> Seus dados estão seguros
+          </div>
+          <div class="cta-trust-item">
+            <span class="cta-trust-icon">⚡</span> Resposta em menos de 24h
+          </div>
+          <div class="cta-trust-item">
+            <span class="cta-trust-icon">🎯</span> ROI no primeiro mês
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-logo">I.A-BUNDÂNCIA <span>| Comunidade</span></div>
+      <p class="footer-tagline">Uma iniciativa da <strong>Primeira Venda com IA em 22h</strong></p>
+      <div class="footer-sep"></div>
+      <p class="footer-copy">
+        &copy; 2026 Primeira Venda com IA em 22h. Todos os direitos reservados.<br />
+        <span style="color:#3A3A3A">Vagas limitadas · Comunidade exclusiva e seleta</span>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════════════════════════ -->
+  <script>
+    // ── Countdown ───────────────────────────────────────────
+    (function () {
+      const target = new Date('2026-04-05T00:00:00');
+
+      function pad(n) { return String(n).padStart(2, '0'); }
+
+      function tick() {
+        const now  = new Date();
+        const diff = target - now;
+
+        if (diff <= 0) {
+          document.getElementById('cd-days').textContent    = '00';
+          document.getElementById('cd-hours').textContent   = '00';
+          document.getElementById('cd-minutes').textContent = '00';
+          document.getElementById('cd-seconds').textContent = '00';
+          return;
+        }
+
+        const days    = Math.floor(diff / 86400000);
+        const hours   = Math.floor((diff % 86400000) / 3600000);
+        const minutes = Math.floor((diff % 3600000)  / 60000);
+        const seconds = Math.floor((diff % 60000)    / 1000);
+
+        document.getElementById('cd-days').textContent    = pad(days);
+        document.getElementById('cd-hours').textContent   = pad(hours);
+        document.getElementById('cd-minutes').textContent = pad(minutes);
+        document.getElementById('cd-seconds').textContent = pad(seconds);
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    })();
+
+    // ── Scroll reveal ────────────────────────────────────────
+    (function () {
+      const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      );
+
+      els.forEach((el) => io.observe(el));
+    })();
+
+    // ── FAQ accordion ────────────────────────────────────────
+    (function () {
+      document.querySelectorAll('.faq-question').forEach((q) => {
+        q.addEventListener('click', () => toggle(q));
+        q.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(q); }
+        });
+      });
+
+      function toggle(q) {
+        const item = q.closest('.faq-item');
+        const open = item.classList.contains('open');
+        // close all
+        document.querySelectorAll('.faq-item.open').forEach((i) => i.classList.remove('open'));
+        if (!open) item.classList.add('open');
+      }
+    })();
+
+    // ── Waitlist form ────────────────────────────────────────
+    (function () {
+      const form    = document.getElementById('waitlist-form');
+      const wrap    = document.getElementById('form-wrap');
+      const success = document.getElementById('form-success');
+
+      // WhatsApp mask
+      const tel = document.getElementById('field-whatsapp');
+      tel.addEventListener('input', () => {
+        let v = tel.value.replace(/\D/g, '').substring(0, 11);
+        if (v.length > 6)
+          v = '(' + v.substring(0,2) + ') ' + v.substring(2,7) + '-' + v.substring(7);
+        else if (v.length > 2)
+          v = '(' + v.substring(0,2) + ') ' + v.substring(2);
+        else if (v.length > 0)
+          v = '(' + v;
+        tel.value = v;
+      });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('field-name').value.trim();
+        const wpp  = tel.value.trim();
+
+        if (!name || wpp.replace(/\D/g,'').length < 10) {
+          if (!name) highlight(document.getElementById('field-name'));
+          if (wpp.replace(/\D/g,'').length < 10) highlight(tel);
+          return;
+        }
+
+        // Here you'd send to your API / webhook. For now just show success.
+        wrap.style.display    = 'none';
+        success.style.display = 'block';
+      });
+
+      function highlight(input) {
+        input.style.borderColor = '#FF4444';
+        input.style.boxShadow   = '0 0 0 3px rgba(255,68,68,0.15)';
+        input.focus();
+        setTimeout(() => {
+          input.style.borderColor = '';
+          input.style.boxShadow   = '';
+        }, 2000);
+      }
+    })();
+
+    // ── Navbar scroll shadow ─────────────────────────────────
+    (function () {
+      const nav = document.querySelector('.navbar');
+      window.addEventListener('scroll', () => {
+        nav.style.boxShadow = window.scrollY > 40
+          ? '0 4px 32px rgba(0,0,0,0.6)'
+          : 'none';
+      }, { passive: true });
+    })();
+  </script>
+
+</body>
+</html>
