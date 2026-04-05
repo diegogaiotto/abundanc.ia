@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diego Tecnolog.ia | Cursos de IA</title>
+  <title>Comunidade Abundância | Primeira Venda com IA 2.0</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
@@ -15,8 +15,11 @@
       --gold-light: #E8C96A;
       --black:      #0A0A0A;
       --black-soft: #111111;
+      --black-card: #141414;
+      --black-border:#1E1E1E;
       --white:      #FFFFFF;
       --gray:       #A0A0A0;
+      --gray-dim:   #5A5A5A;
     }
 
     body {
@@ -29,11 +32,11 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 2rem;
+      padding: 3rem 1.5rem;
     }
 
     .logo {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
       color: var(--gray);
       letter-spacing: 0.08em;
@@ -41,72 +44,145 @@
       margin-bottom: 3rem;
     }
 
-    .logo span {
-      color: var(--gold);
-    }
+    .logo span { color: var(--gold); }
 
     .badge {
       display: inline-block;
       background: rgba(201,168,76,0.12);
       border: 1px solid rgba(201,168,76,0.3);
       color: var(--gold);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       padding: 0.4rem 1rem;
       border-radius: 100px;
-      margin-bottom: 2rem;
-    }
-
-    h1 {
-      font-size: clamp(2rem, 6vw, 3.5rem);
-      font-weight: 900;
-      line-height: 1.15;
       margin-bottom: 1.5rem;
     }
 
-    h1 span {
-      color: var(--gold);
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 1rem;
     }
 
-    p {
-      font-size: 1.1rem;
+    h1 span { color: var(--gold); }
+
+    .subtitle {
+      font-size: 1.05rem;
       color: var(--gray);
       max-width: 480px;
       line-height: 1.7;
       margin-bottom: 3rem;
     }
 
-    .cta-link {
+    /* ── Pricing card ── */
+    .pricing-card {
+      background: var(--black-card);
+      border: 1px solid var(--black-border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      max-width: 420px;
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+
+    .original-price {
+      font-size: 0.95rem;
+      color: var(--gray-dim);
+      text-decoration: line-through;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .price-main {
+      font-size: clamp(2.4rem, 8vw, 3.2rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .price-main sup {
+      font-size: 1.2rem;
+      font-weight: 700;
+      vertical-align: super;
+    }
+
+    .price-or {
+      font-size: 0.82rem;
+      color: var(--gray-dim);
+      margin: 0.8rem 0;
+    }
+
+    .price-installment {
+      font-size: 1rem;
+      color: var(--gray);
+    }
+
+    .price-installment strong {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 99px;
+      margin: 1.2rem auto;
+    }
+
+    /* ── CTA Button ── */
+    .cta-btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.6rem;
-      background: linear-gradient(135deg, var(--gold), var(--gold-light, #E8C96A));
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
       color: #0A0A0A;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 1rem;
-      padding: 1rem 2rem;
-      border-radius: 8px;
+      padding: 1.1rem 2.2rem;
+      border-radius: 10px;
       text-decoration: none;
-      transition: opacity 0.2s;
+      width: 100%;
+      max-width: 420px;
+      transition: opacity 0.2s, transform 0.2s;
+      letter-spacing: 0.02em;
     }
 
-    .cta-link:hover {
-      opacity: 0.85;
+    .cta-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
     }
 
-    .cta-link svg {
+    .cta-btn svg {
       width: 18px;
       height: 18px;
+      flex-shrink: 0;
+    }
+
+    .guarantee {
+      margin-top: 1rem;
+      font-size: 0.78rem;
+      color: var(--gray-dim);
     }
 
     footer {
-      position: fixed;
-      bottom: 1.5rem;
+      margin-top: 4rem;
       color: var(--gray);
-      font-size: 0.75rem;
-      opacity: 0.5;
+      font-size: 0.72rem;
+      opacity: 0.45;
     }
   </style>
 </head>
@@ -114,18 +190,29 @@
 
   <div class="logo">Diego<span>Tecnolog.ia</span></div>
 
-  <div class="badge">Em breve</div>
+  <div class="badge">Primeira Venda com IA 2.0</div>
 
-  <h1>Todos os cursos<br /><span>disponíveis aqui</span></h1>
+  <h1>Comunidade<br /><span>Abundância</span></h1>
 
-  <p>Novidades chegando. Fique de olho neste espaço — em breve você encontrará tudo o que precisa para crescer com inteligência artificial.</p>
+  <p class="subtitle">Acompanhamento intensivo para você fazer sua primeira venda com inteligência artificial — e escalar a partir daí.</p>
 
-  <a href="/abundanciacomunidade" class="cta-link">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-5.356-3.765M9 20H4v-2a4 4 0 015.356-3.765M15 7a4 4 0 11-8 0 4 4 0 018 0zm6 3a3 3 0 11-6 0 3 3 0 016 0z" />
+  <div class="pricing-card">
+    <div class="original-price">De R$ 5.750,00</div>
+    <div class="price-label">Por apenas</div>
+    <div class="price-main"><sup>R$</sup> 297<sup>,00</sup></div>
+    <div class="divider"></div>
+    <div class="price-or">ou parcelado em</div>
+    <div class="price-installment">12x de <strong>R$ 30,44</strong></div>
+  </div>
+
+  <a href="https://pay.kirvano.com/77fc3734-a64f-4fa3-93c8-f1fcfb4fcb00" class="cta-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
     </svg>
-    Conheça a Comunidade abundânc.ia
+    Quero entrar agora
   </a>
+
+  <p class="guarantee">Pagamento 100% seguro · Acesso imediato após confirmação</p>
 
   <footer>© 2026 diegotecnolog.ia — Todos os direitos reservados</footer>
 
